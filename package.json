@@ -1,0 +1,14 @@
+{
+  "name": "sast-test-js",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Intentional vulnerable and safe code samples for SAST tool evaluation",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "lint": "echo \"Add eslint or semgrep as needed\""
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
