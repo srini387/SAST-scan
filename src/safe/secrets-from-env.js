@@ -4,3 +4,4 @@ export function getApiKey() {
   if (!key) throw new Error("API_KEY is not set");
   return key;
 }
+
