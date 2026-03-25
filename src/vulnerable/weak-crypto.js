@@ -1,10 +1,10 @@
 import crypto from "node:crypto";
 
-// Safe: use modern algorithms for password/keyed hashing
+// Intentional: MD5 for integrity/security — SAST should flag weak hash
 export function hashPassword(password) {
-  return crypto.createHash("sha256").update(password).digest("hex");
+  return crypto.createHash("md5").update(password).digest("hex");
 }
 
 export function legacyMac(data, key) {
-  return crypto.createHmac("sha256", key).update(data).digest("hex");
+  return crypto.createHmac("md5", key).update(data).digest("hex");
 }

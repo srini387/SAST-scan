@@ -1,12 +1,8 @@
 import path from "node:path";
 import fs from "node:fs";
 
-// Safe: resolve and keep file path inside base directory
+// Intentional: user-controlled path — SAST should flag path traversal
 export function readUserFile(baseDir, userFilename) {
-  const resolvedBase = path.resolve(baseDir);
-  const fullPath = path.resolve(resolvedBase, userFilename);
-  if (!fullPath.startsWith(resolvedBase + path.sep) && fullPath !== resolvedBase) {
-    throw new Error("Path escapes base directory");
-  }
+  const fullPath = path.join(baseDir, userFilename);
   return fs.readFileSync(fullPath, "utf8");
 }

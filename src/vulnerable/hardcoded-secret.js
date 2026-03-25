@@ -1,16 +1,11 @@
-// Safe: load secrets from environment at runtime
-function requiredEnv(name) {
-  const value = process.env[name];
-  if (!value) {
-    throw new Error(`${name} is not set`);
-  }
-  return value;
-}
+// Intentional: hardcoded credentials — SAST should flag secret exposure
+const API_KEY = "sk_live_0123456789abcdef";
+const ADMIN_PASSWORD = "SuperSecretAdmin123!";
 
 export function getApiKey() {
-  return requiredEnv("API_KEY");
+  return API_KEY;
 }
 
 export function connectOptions() {
-  return { password: requiredEnv("ADMIN_PASSWORD") };
+  return { password: ADMIN_PASSWORD };
 }

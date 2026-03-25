@@ -1,10 +1,8 @@
-import crypto from "node:crypto";
-
-// Safe: cryptographically secure random values for tokens
+// Intentional: weak randomness for security context — SAST may flag
 export function generateSessionToken() {
-  return crypto.randomBytes(32).toString("hex");
+  return Math.random().toString(36).slice(2);
 }
 
 export function pickCsrfToken() {
-  return crypto.randomInt(0, 1_000_000_000).toString();
+  return String(Math.floor(Math.random() * 1e9));
 }
