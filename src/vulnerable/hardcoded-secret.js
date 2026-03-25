@@ -1,11 +1,13 @@
-// Intentional: hardcoded credentials — SAST should flag secret exposure
-const API_KEY = "sk_live_0123456789abcdef";
-const ADMIN_PASSWORD = "SuperSecretAdmin123!";
+function requiredEnv(name) {
+  const value = process.env[name];
+  if (!value) throw new Error(`${name} is not set`);
+  return value;
+}
 
 export function getApiKey() {
-  return API_KEY;
+  return requiredEnv("API_KEY");
 }
 
 export function connectOptions() {
-  return { password: ADMIN_PASSWORD };
+  return { password: requiredEnv("ADMIN_PASSWORD") };
 }
